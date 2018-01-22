@@ -34,9 +34,78 @@ def num_points_scored (player)
   score[0]
 end
 
+def shoe_size (player)
+  size = []
+ game_hash.each {|location, team_data|
+    team_data[:players].each {|name, data|
+      if name == player
+        size = data.values_at(:shoe)
+        end
+    }
+  
+  }
+  size[0]
+end
 
 
+def team_colors (team)
+ colors = [] 
+  game_hash.each {|location, team_data|
+    if team_data[:team_name] == team
+    colors = team_data.values_at(:colors)
+  end
+ 
+  }
+  colors[0]
+end
 
+def team_names
 
+game_hash.collect {|location, team_data|
+  team_data[:team_name]
+}
 
+end
 
+def player_numbers(team)
+ numbers = [] 
+  game_hash.each {|location, team_data|
+    if team_data[:team_name] == team
+      team_data[:players].each {|name, data|
+    numbers << data.values_at(:number)[0]}
+  end
+ 
+  }
+  numbers
+end
+
+def player_stats (player)
+    stats = []
+ game_hash.each {|location, team_data|
+    team_data[:players].each {|name, data|
+      if name == player
+        stats << data
+        end
+    }
+  
+  }
+  stats[0]
+end
+
+def big_shoe_rebounds
+    big_foot = []
+    i=0
+ game_hash.each {|location, team_data|
+ 
+    team_data[:players].each {|name, data|
+      if i < data[:shoe]
+        i=data[:shoe]
+        big_foot = data.values_at(:rebounds)
+      else 
+        i
+        end
+    }
+  
+  }
+  big_foot[0]
+end 
