@@ -1,4 +1,5 @@
-# Write your code here!
+require "pry" 
+
 
 def game_hash
   hashket = {home:
@@ -22,16 +23,13 @@ end
 
 
 def num_points_scored (player)
-  score = []
- game_hash.each {|location, team_data|
-    team_data[:players].each {|name, data|
-      if name == player
-        score = data.values_at(:points)
-        end
-    }
-  
-  }
-  score[0]
+  game_hash.each do |location, team_data|
+    team_data[:players].each do |name, info|
+      if player == name
+        return info[:points]
+      end
+    end
+  end
 end
 
 def shoe_size (player)
